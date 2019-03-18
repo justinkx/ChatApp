@@ -1,0 +1,20 @@
+.footerToolbar {
+    ion-textarea {
+        border: 1px solid gray;
+        border-radius: 5px;
+        margin-right: 5px;
+        textarea {
+            padding: 2px 0px !important;
+        }
+    }
+    ion-list {
+        ion-item {
+            padding: 5px 10px;
+            --background: gray !important;
+        }
+    }
+    .input-wrapper {
+        border: 1px solid gray;
+        border-radius: 10px;
+    }
+}

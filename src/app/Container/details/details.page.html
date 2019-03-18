@@ -1,0 +1,26 @@
+<ion-header>
+ <ion-toolbar color="primary">
+    <ion-buttons slot="start" defaultHref="/tabs/tab1">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{channelData.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list lines="full">
+    <app-message *ngFor="let message of messages$" [message]="message"></app-message>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar class="footerToolbar">
+    <ion-item>
+    <ion-textarea 
+    [(ngModel)]="message"
+    placeholder="Enter message..."></ion-textarea>
+   <ion-button (click)="sendMessage()">
+      <ion-icon slot="icon-only" name="send"></ion-icon>
+    </ion-button>
+  </ion-item>
+  </ion-toolbar>
+</ion-footer>

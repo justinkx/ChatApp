@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start" defaultHref="/tabs/tab1">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create Channel</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Name</ion-label>
+      <ion-input clearInput [(ngModel)]="channelName"
+      placeholder="channel name"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-label>Add Members</ion-label>
+  <ion-searchbar 
+  [(ngModel)]="searchWord"
+  (ionChange)="onSearchChange($event)"
+  color="primary" animated 
+  debounce="500"></ion-searchbar>
+  <ion-list>
+    <ion-item >
+    </ion-item>
+  </ion-list>
+  <ion-button shape="round" fill="outline">create</ion-button>
+</ion-content>

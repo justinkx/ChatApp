@@ -1,0 +1,19 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu>
+      <ion-header color="primary">
+        <ion-toolbar>
+          <ion-title>
+            Side Menu
+          </ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content padding>
+        <ion-button (click)="logout()" expand="block">
+          Logout
+        </ion-button>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

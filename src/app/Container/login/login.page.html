@@ -1,0 +1,15 @@
+<ion-content padding>
+   <ion-list>
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input clearInput type="email" [(ngModel)]="email"
+      placeholder="Email ID"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input clearInput type="password" [(ngModel)]="password"
+      placeholder="Password"></ion-input>
+    </ion-item>
+  </ion-list>
+   <ion-button (click)="login()" expand="block">Login</ion-button>
+</ion-content>
