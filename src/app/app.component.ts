@@ -4,7 +4,7 @@ import { Platform, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AuthenticationService } from './Services/authentication.service';
-
+import { TabsService } from './Services/tabs.service';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -16,6 +16,7 @@ export class AppComponent {
     private menu: MenuController,
     private authenticationService: AuthenticationService,
     private router: Router,
+    public tabs: TabsService,
     private statusBar: StatusBar
   ) {
     this.initializeApp();

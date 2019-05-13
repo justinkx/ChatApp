@@ -16,6 +16,8 @@ import { TodoService } from './Services/todo.service';
 import { RxjsStore } from './Services/store.service';
 import { ChatService } from './Services/chat.services';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { TabsService } from './Services/tabs.service';
+import { LoaderService } from './Services/loader.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,6 +39,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
     SplashScreen,
     AngularFireAuth,
     ChatService,
+    TabsService,
+    LoaderService,
     { provide: FirestoreSettingsToken, useValue: {} },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

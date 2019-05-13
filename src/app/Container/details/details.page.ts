@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 import { RxjsStore } from './../../Services/store.service';
 import { Message, Channel, User } from '../../Models/chat.models';
 import { ChatService } from './../../Services/chat.services';
-import { Subscriber } from 'rxjs';
+import { Subscriber, Subscription } from 'rxjs';
+import { LoaderService } from '../../Services/loader.service';
 
 @Component({
   selector: 'app-details',
@@ -21,7 +22,7 @@ export class DetailsPage implements OnInit {
   };
   channelId: number = null;
   channelData: Channel;
-  messageSubscriber$;
+  messageSubscriber$: Subscription;
   messages$: Array<Message>;
   message: string;
   loggedInUser: string;
@@ -30,45 +31,51 @@ export class DetailsPage implements OnInit {
     public rxjsStore: RxjsStore,
     private router: Router,
     private chatService: ChatService,
+    private loader: LoaderService,
     private todoService: TodoService,
     private loadingController: LoadingController) {
-      this.channelId = this.route.snapshot.params['id'];
-      this.messageSubscriber$ = this.rxjsStore.messages.subscribe((messages: Array<Message>) => {
+    this.channelId = this.route.snapshot.params['id'];
+    this.messageSubscriber$ = this.rxjsStore.messages.subscribe((messages: Array<Message>) => {
+      if (messages) {
         this.messages$ = messages.filter((message: Message) => {
           return message.channel_id === Number(this.channelId);
         });
-        console.log(this.messages$);
-      });
-      this.rxjsStore.loggedInUser.subscribe((uid: string) => {
-        this.loggedInUser = uid;
-      });
-    }
-    ngOnInit() {
-      if (this.channelId)  {
-        this.loadChannelDetails(this.channelId);
+        this.loader.hide();
       }
+      console.log(this.messages$);
+    });
+    this.rxjsStore.loggedInUser.subscribe((uid: string) => {
+      this.loggedInUser = uid;
+    });
+  }
+  ngOnInit() {
+    if (this.channelId) {
+      this.loadChannelDetails(this.channelId);
     }
-    ionViewWillLeave() {
-      console.log('on destory');
-      this.messageSubscriber$.unsubscribe();
-    }
-    loadChannelDetails(id: number) {
-      this.channelData = this.rxjsStore.getChannelDetails(id)[0];
-      this.loadMessages(this.channelData);
-    }
-    loadMessages(channelData: Channel) {
-      this.chatService.getMessages(channelData.channel_id);
-    }
-    sendMessage() {
-      const messageData: Message = {
-        channel_id: Number(this.channelId),
-        message: this.message,
-        user_id: this.loggedInUser,
-        time_stamp: Number(new Date())
-      };
-      console.log(messageData);
-      this.chatService.insertMessage(messageData).then((id) => {
-        this.message = '';
-      });
-    }
+  }
+  ionViewWillEnter() {
+    this.loader.show();
+  }
+  ionViewWillLeave() {
+    this.messageSubscriber$.unsubscribe();
+  }
+  loadChannelDetails(id: number) {
+    this.channelData = this.rxjsStore.getChannelDetails(id)[0];
+    this.loadMessages(this.channelData);
+  }
+  loadMessages(channelData: Channel) {
+    this.chatService.getMessages(channelData.channel_id);
+  }
+  sendMessage() {
+    const messageData: Message = {
+      channel_id: Number(this.channelId),
+      message: this.message,
+      user_id: this.loggedInUser,
+      time_stamp: Number(new Date())
+    };
+    console.log(messageData);
+    this.chatService.insertMessage(messageData).then((id) => {
+      this.message = '';
+    });
+  }
 }

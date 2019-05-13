@@ -37,6 +37,7 @@ export class AuthenticationService {
     this.storage.set(TOKEN_KEY, uid).then(() => {
       this.rxjsStore.addLoggedinUser(uid);
         this.authenticationState.next(true);
+        console.log(uid, this.authenticationState.value);
         this.userService.getUser(uid);
     });
   }
