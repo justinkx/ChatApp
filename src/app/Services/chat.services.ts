@@ -38,8 +38,7 @@ export class ChatService {
       console.log(`get messages chat service, ${messages}`);
       this.rxjsStore.addMessage(messages);
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
     });
     // this.messages = this.messageCollection.snapshotChanges().pipe(
     //   map(actions => {

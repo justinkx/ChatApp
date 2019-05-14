@@ -12,7 +12,7 @@ export const environment = {
     storageBucket: 'ionic4-281a2.appspot.com',
     messagingSenderId: '152265902345'
   },
-  hmr: false
+  hmr: true
 };
 
 /*

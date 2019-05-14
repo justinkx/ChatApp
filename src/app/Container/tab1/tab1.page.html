@@ -23,8 +23,7 @@
  
     <ion-item-sliding *ngFor="let item of channels">
       <ion-item lines="inset" button (click)="openChat(item.channel_id)">
-        <ion-avatar slot="start">
-  </ion-avatar>
+        <text-avatar [name]="item.name"></text-avatar>
         <ion-label>
           {{ item.name }}
         </ion-label>
