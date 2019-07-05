@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Todo, TodoService } from './../../Services/todo.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, IonList , IonContent } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { RxjsStore } from './../../Services/store.service';
 import { Message, Channel, User } from '../../Models/chat.models';
@@ -15,11 +14,9 @@ import { LoaderService } from '../../Services/loader.service';
   styleUrls: ['./details.page.scss'],
 })
 export class DetailsPage implements OnInit {
-  todo: Todo = {
-    task: 'test',
-    createdAt: new Date().getTime(),
-    priority: 2
-  };
+  @ViewChild(IonContent) contentArea: IonContent;
+  @ViewChild(IonList, { read: ElementRef }) chatList: ElementRef;
+  private mutationObserver: MutationObserver;
   channelId: number = null;
   channelData: Channel;
   messageSubscriber$: Subscription;
@@ -31,12 +28,15 @@ export class DetailsPage implements OnInit {
     public rxjsStore: RxjsStore,
     private router: Router,
     private chatService: ChatService,
-    private loader: LoaderService,
-    private todoService: TodoService,
-    private loadingController: LoadingController) {
+    private loader: LoaderService) {
     this.channelId = this.route.snapshot.params['id'];
     this.messageSubscriber$ = this.rxjsStore.messages.subscribe((messages: Array<Message>) => {
       if (messages) {
+        if (this.messages$ && messages.length > this.messages$.length) {
+          setTimeout(() => {
+            this.contentArea.scrollToBottom(300);
+          }, 300);
+        }
         this.messages$ = messages.filter((message: Message) => {
           return message.channel_id === Number(this.channelId);
         });
@@ -53,6 +53,7 @@ export class DetailsPage implements OnInit {
       this.loadChannelDetails(this.channelId);
     }
   }
+
   ionViewWillEnter() {
     this.loader.show();
   }

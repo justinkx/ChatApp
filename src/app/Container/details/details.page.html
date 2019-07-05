@@ -9,13 +9,16 @@
 
 <ion-content padding>
   <ion-list lines="full">
-    <app-message *ngFor="let message of messages$" [message]="message"></app-message>
+    <app-message *ngFor="let message of messages$; let i = index" 
+    [message]="message"
+    [index]="i+1"></app-message>
   </ion-list>
 </ion-content>
 <ion-footer>
   <ion-toolbar class="footerToolbar">
     <ion-item>
     <ion-textarea 
+    mode="ios"
     [(ngModel)]="message"
     placeholder="Enter message..."></ion-textarea>
    <ion-button (click)="sendMessage()">

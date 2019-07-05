@@ -68,14 +68,6 @@
             },
             "ci": {
               "progress": false
-            },
-            "hmr": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.hmr.ts"
-                }
-              ]
             }
           }
         },
@@ -91,10 +83,6 @@
             "ci": {
               "progress": false
             }
-          },
-          "hmr": {
-            "hmr": true,
-            "browserTarget": "<project-name>:build:hmr"
           }
         },
         "extract-i18n": {
@@ -135,8 +123,13 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-            "exclude": ["**/node_modules/**"]
+            "tsConfig": [
+              "src/tsconfig.app.json",
+              "src/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "ionic-cordova-build": {
@@ -185,7 +178,9 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }

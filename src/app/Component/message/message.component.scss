@@ -1,6 +1,15 @@
-ion-list {
-    ion-item {
-        padding: 5px 10px;
-        --background: gray !important;
-    }
+.item-native {
+    background: var(--ion-color-primary-tint, #4c8dff);
+    border-radius: 8px;
+}
+ion-item {
+    --background: linear-gradient(135deg, #67C0F5 30%, #328AFE 100%);
+    --border-radius: 30px;
+    margin-bottom: 20px;
+    min-width: 50%;
+    max-width: 75%;
+    &.leftItem {
+     margin-left: auto;
+     text-align: right;
+   }
 }

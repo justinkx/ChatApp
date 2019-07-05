@@ -1,6 +1,6 @@
-<ion-item text-wrap lines="none">
-  <ion-label>
-  <p>{{message.message}}</p>
+<ion-item text-wrap [ngClass]="index % 2 === 0 ? 'leftItem' : ''"  lines="none">
+  <ion-label color="light">
+  <p class="whiteFont">{{message.message}}</p>
   <p>{{message.time_stamp | date:'medium'}}</p>
   </ion-label>
 </ion-item>
