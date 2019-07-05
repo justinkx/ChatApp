@@ -9,4 +9,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content padding>
+  <svg-progress [svgProgress]="Progress"
+style="margin-bottom: 25px;"
+[width]="300"
+[shape]="'rectangle'"
+[borderColor]="'#383a3e'"
+[direction]="'horizontal'"
+[showPercentage]="true"
+[height]="40"
+[progressColor]="'#FF0000'"></svg-progress>
+<svg-progress [svgProgress]="Progress"
+[width]="200"
+[shape]="'heart'"
+[direction]="'vertical'"
+[height]="80"
+[showPercentage]="true"
+[percentageColor]="'white'"
+[borderColor]="'#383a3e'"
+[progressColor]="'#FF0000'"></svg-progress>
+<svg-progress [svgProgress]="Progress"
+[shape]="'circle'"
+[radius]="100"
+[circleWidth]="12"
+[showPercentage]="true"
+[percentageColor]="'black'"
+[borderColor]="'#383a3e'"
+[backgroundFill]="'gray'"
+[progressColor]="'#FF0000'"></svg-progress>
+</ion-content>

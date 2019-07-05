@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 })
 export class MessageComponent implements OnInit {
   @Input() message: any;
+  @Input() index: number;
   constructor() { }
 
   ngOnInit() {
